@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  s3proxy:
+    container_name: s3proxy
+    image: andrewgaul/s3proxy
+    ports:
+        - 59001:80
+    environment:
+      - S3PROXY_AUTHORIZATION=aws-v2-or-v4
+      - S3PROXY_IDENTITY=${S3PROXY_IDENTITY}
+      - S3PROXY_CREDENTIAL=${S3PROXY_CREDENTIAL}
+      - JCLOUDS.PROVIDER=openstack-swift
+      - JCLOUDS_ENDPOINT=https://identity.tyo1.conoha.io/v2.0/
+      - JCLOUDS_IDENTITY=${JCLOUDS_IDENTITY}
+      - JCLOUDS_CREDENTIAL=${JCLOUDS_CREDENTIAL}
+      - JCLOUDS_REGION=tyo1
